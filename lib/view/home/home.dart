@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: Alignment.bottomRight,
+                                      alignment: Alignment.bottomCenter,
                                       child: Image.asset(
                                         'assets/images/Noodle.png',
                                         height: 70,
@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ),
                                     Align(
-                                      alignment: Alignment.bottomRight,
+                                      alignment: Alignment.bottomCenter,
                                       child: Image.asset(
                                         'assets/images/p15.jpg',
                                         height: 70,
