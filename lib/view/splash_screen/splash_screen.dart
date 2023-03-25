@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:drawer/view/home/home.dart';
+import 'package:drawer/view/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
