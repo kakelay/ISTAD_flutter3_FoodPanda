@@ -1,4 +1,4 @@
-import 'package:drawer/view/home/widgets/shop_card.dart';
+import 'package:drawer/views/home/widgets/shop_card.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
