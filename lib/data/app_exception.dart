@@ -11,7 +11,7 @@ class AppException implements Exception {
 
 class FetchDataException extends AppException {
   FetchDataException(String? message)
-      : super(message: message, prefix: 'Error During communition ,please check your internet');
+      : super(message: message, prefix: 'Error During communicate,please check your internet');
 }
 
 class UnAuthorizedException extends AppException{

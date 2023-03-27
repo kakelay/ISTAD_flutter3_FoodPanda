@@ -1,6 +1,9 @@
+import 'package:drawer/data/response/status.dart';
+import 'package:drawer/viewmodels/restaurant_viewmodel.dart';
 import 'package:drawer/views/home/widgets/shop_card.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 import 'widgets/cuisine_card.dart';
 import 'widgets/left_drawer.dart';
@@ -15,6 +18,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // call  api
+  var restaurantViewModel = RestaurantViewModel();
+
+  @override
+  void initState() {
+    restaurantViewModel.fetchAllRestaurants();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,25 +232,25 @@ class _HomeScreenState extends State<HomeScreen> {
                             decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
+                                    BorderRadius.all(Radius.circular(15))),
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
                                 borderRadius:
-                                const BorderRadius.all(Radius.circular(15)),
+                                    const BorderRadius.all(Radius.circular(15)),
                                 onTap: () {},
                                 splashFactory: InkSparkle
                                     .constantTurbulenceSeedSplashFactory,
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Column(
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         children: const [
                                           Text(
                                             'Latte  Coffee',
@@ -292,14 +304,31 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: SizedBox(
-                height: 320,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 10,
-                  itemBuilder: (builder, index) {
-                    return ShopCard(shopName: 'KOI 00$index');
-                  },
+              child: ChangeNotifierProvider<RestaurantViewModel>(
+                create: (context) => restaurantViewModel,
+                child: Consumer<RestaurantViewModel>(
+                  builder: ((context, value, child) {
+                    switch (value.restaurants.status) {
+                      case Status.LOADING:
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      case Status.COMPLETE:
+                        return SizedBox(
+                          height: 320,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: value.restaurants.data!.data.length,
+                            itemBuilder: (builder, index) {
+                              return ShopCard(
+                                  data: value.restaurants.data!.data[index]);
+                            },
+                          ),
+                        );
+                      default:
+                        return const CircularProgressIndicator();
+                    }
+                  }),
                 ),
               ),
             ),
