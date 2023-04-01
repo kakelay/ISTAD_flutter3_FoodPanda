@@ -19,5 +19,6 @@ samples, guidance on mobile development, and a full API reference.
 ## API FROM ISTAD (Teacher fix  api from swapi) 
 ### Need more update for this project  Food-Panda.
 ### TODO with  loading circle sign.
-
+###  OneSignal with  Firebase
+###  ApI ISTAD  ( RESTAURANT  AND  CUISINE ) API
 
