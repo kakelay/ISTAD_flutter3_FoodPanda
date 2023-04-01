@@ -1,12 +1,17 @@
 import 'package:drawer/data/response/status.dart';
+  
+import 'package:drawer/viewmodels/cuisine_viewmodel.dart';
 import 'package:drawer/viewmodels/restaurant_viewmodel.dart';
 import 'package:drawer/views/home/widgets/shop_card.dart';
+ 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import 'widgets/cuisine_card.dart';
 import 'widgets/left_drawer.dart';
+import 'widgets/restaurant_card.dart';
+ 
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -18,12 +23,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // call  api
+  // call  api restaurant
   var restaurantViewModel = RestaurantViewModel();
+  // call  api cuisine
+  var cuisineViewModel = CuisineViewModel();
 
   @override
   void initState() {
     restaurantViewModel.fetchAllRestaurants();
+    cuisineViewModel.fetchAllCuisines();
     super.initState();
   }
 
@@ -320,7 +328,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             scrollDirection: Axis.horizontal,
                             itemCount: value.restaurants.data!.data.length,
                             itemBuilder: (builder, index) {
-                              return ShopCard(
+                              return RestaurantCard(
                                   data: value.restaurants.data!.data[index]);
                             },
                           ),
@@ -348,18 +356,37 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: SizedBox(
-                height: 200,
-                child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 4,
-                    mainAxisSpacing: 4,
-                  ),
-                  itemBuilder: (BuildContext context, index) {
-                    return const CuisineCard();
+              child: ChangeNotifierProvider<CuisineViewModel>(
+                create: (context) => cuisineViewModel,
+                child: Consumer<CuisineViewModel>(
+                  builder: (context, value, child) {
+                    switch (value.cuisines.status) {
+                      case Status.LOADING:
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      case Status.COMPLETE:
+                        return SizedBox(
+                          height: 200,
+                          child: GridView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: value.cuisines.data!.data.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 4,
+                              mainAxisSpacing: 4,
+                            ),
+                            itemBuilder: (BuildContext context, index) {
+                              return CuisineCard(
+                                data: value.cuisines.data!.data[index],
+                              );
+                            },
+                          ),
+                        );
+                      default:
+                        return const CircularProgressIndicator();
+                    }
                   },
                 ),
               ),
@@ -389,7 +416,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisCount: 1,
                   ),
                   itemBuilder: (BuildContext context, index) {
-                    return const CuisineCard();
+                    return ShopCard();
                   },
                 ),
               ),

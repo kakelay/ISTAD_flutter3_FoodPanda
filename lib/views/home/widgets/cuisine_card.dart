@@ -1,9 +1,13 @@
+import 'package:drawer/models/response/cuisine.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class CuisineCard extends StatelessWidget {
-  const CuisineCard({
+  CuisineCard({
     Key? key,
+    this.data,
   }) : super(key: key);
+  Cuisinedata? data;
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +21,14 @@ class CuisineCard extends StatelessWidget {
             borderRadius: const BorderRadius.all(Radius.circular(15)),
             color: Colors.grey[300],
           ),
-          child: Image.asset('assets/images/Noodle.png'),
+          child: Image.network(
+            'https://cms.istad.co${data!.attributes.thumbnail.data.attributes.url}',
+          ),
         ),
-        const Text(
-          'Noodel',
-          style: TextStyle( fontWeight: FontWeight.bold),
+        Text(
+          // ignore: unnecessary_string_interpolations
+          '${data!.attributes.title}',
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
       ],
     );

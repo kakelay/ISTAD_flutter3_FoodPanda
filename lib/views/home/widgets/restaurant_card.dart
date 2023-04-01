@@ -2,12 +2,12 @@ import 'package:drawer/models/response/restaurant.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class ShopCard extends StatelessWidget {
-   ShopCard({
+class RestaurantCard extends StatelessWidget {
+   RestaurantCard({
      super .key,
-      this.data
+     required this.data
    });
-   RestaurantData? data;
+   RestaurantData data;
 
 
   @override
@@ -25,7 +25,7 @@ class ShopCard extends StatelessWidget {
                 child: SizedBox(
                   height: 230,
                   child: Image.network(
-                    'https://cms.istad.co${data!.attributes.picture.data.attributes.url}',
+                    'https://cms.istad.co${data.attributes.picture.data.attributes.url}',
                   ),
                 ),
               ),
@@ -39,7 +39,7 @@ class ShopCard extends StatelessWidget {
                     color: Colors.pink,
                     padding: const EdgeInsets.all(5),
                     child: Text(
-                      '${data!.attributes.discount}\$',
+                      '${data.attributes.discount}\$',
                       style:const  TextStyle(
                           fontSize: 14,
                           color: Colors.white,
@@ -54,17 +54,17 @@ class ShopCard extends StatelessWidget {
             height: 10,
           ),
           Text(
-            '${data!.attributes.name}',
+            '${data.attributes.name}',
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
           ),
           const SizedBox(height: 5),
           Text(
-            '\$\$\$ ${data!.attributes.category}',
+            '\$\$\$ ${data.attributes.category}',
             style: TextStyle(color: Color.fromARGB(255, 147, 146, 146)),
           ),
           const SizedBox(height: 5),
            Text(
-            '\$ ${data!.attributes.deliveryFee}',
+            '\$ ${data.attributes.deliveryFee}',
             style:const  TextStyle(color: Colors.grey),
           ),
         ],
