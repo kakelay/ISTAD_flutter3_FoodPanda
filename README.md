@@ -23,4 +23,12 @@ samples, guidance on mobile development, and a full API reference.
 ###  ApI ISTAD  ( RESTAURANT  AND  CUISINE ) API
 ###  Api  Shop_Card Push4/4/23
 ###  Finish interface and  api  
+- <input type="checkbox" checked> Develop SMART goals
+
+  - Api ISTAD 
+  - API CUISINE
+  - API RESTAURANT 
+  - API  SHOP CARD  GET  FROM  CUISINE API 
+  - LAST UPDATED 04/04/2023 
+  - FIRSTS  PROJECT AT ISTAD
 
