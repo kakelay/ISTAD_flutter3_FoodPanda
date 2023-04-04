@@ -1,5 +1,4 @@
 import 'package:drawer/data/response/status.dart';
-import 'package:drawer/models/response/shop.dart';
 
 import 'package:drawer/viewmodels/cuisine_viewmodel.dart';
 import 'package:drawer/viewmodels/restaurant_viewmodel.dart';
@@ -43,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 233, 232, 232),
       appBar: AppBar(
         // remove shawdow
         elevation: 0,
@@ -106,8 +106,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SliverToBoxAdapter(
+              // ignore: avoid_unnecessary_containers
               child: Container(
-                color: Colors.grey[100],
+                // color: Colors.grey[100],
                 child: Column(
                   children: [
                     Container(
@@ -121,14 +122,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       // splash event on tap:
+                      // ignore: sized_box_for_whitespace
                       child: Container(
-                        margin: const EdgeInsets.all(15),
+                        // margin: const EdgeInsets.all(15),
                         width: double.infinity,
                         height: 100,
-                        decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                        ),
+                        // decoration: const BoxDecoration(
+                        //   color: Color.fromARGB(255, 183, 106, 106),
+                        //   borderRadius: BorderRadius.all(Radius.circular(15)),
+                        // ),
                         child: Material(
                           color: Colors.transparent,
                           child: InkWell(
@@ -266,14 +268,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                             CrossAxisAlignment.start,
                                         children: const [
                                           Text(
-                                            'Latte  Coffee',
+                                            'Amok Khmer',
                                             style: TextStyle(
                                               fontSize: 16,
                                               fontWeight: FontWeight.bold,
                                             ),
                                           ),
                                           Text(
-                                            'Latte coffee for Morning ',
+                                            'This food is popular in Cambodia',
                                             style: TextStyle(
                                               fontSize: 12,
                                             ),
@@ -284,7 +286,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Align(
                                       alignment: Alignment.bottomCenter,
                                       child: Image.asset(
-                                        'assets/images/p15.jpg',
+                                        'assets/images/amok.jpg',
                                         height: 70,
                                         width: 70,
                                       ),
@@ -447,11 +449,11 @@ class _HomeScreenState extends State<HomeScreen> {
             SliverToBoxAdapter(
               child: Container(
                 margin: const EdgeInsets.all(15),
-                padding: const EdgeInsets.all(10),
+                // padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1,
-                    color: Colors.grey,
+                    //  color: Colors.grey,
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(15)),
                 ),
@@ -479,7 +481,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-            )
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Image.asset('assets/images/kh.png'),
+              ),
+            ),
           ],
         ),
       ),

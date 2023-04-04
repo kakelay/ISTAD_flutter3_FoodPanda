@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         const SystemUiOverlayStyle(statusBarColor: Colors.pink));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),

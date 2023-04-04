@@ -17,9 +17,9 @@ class CuisineCard extends StatelessWidget {
           height: 80,
           width: 80,
           padding: const EdgeInsets.all(18),
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(15)),
-            color: Colors.grey[300],
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+            color: Colors.white,
           ),
           child: Image.network(
             'https://cms.istad.co${data!.attributes.thumbnail.data.attributes.url}',
