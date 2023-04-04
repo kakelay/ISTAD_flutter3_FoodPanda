@@ -1,9 +1,11 @@
 import 'package:drawer/data/response/status.dart';
-  
+import 'package:drawer/models/response/shop.dart';
+
 import 'package:drawer/viewmodels/cuisine_viewmodel.dart';
 import 'package:drawer/viewmodels/restaurant_viewmodel.dart';
+import 'package:drawer/viewmodels/shop_viewmodel.dart';
 import 'package:drawer/views/home/widgets/shop_card.dart';
- 
+
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -11,7 +13,6 @@ import 'package:provider/provider.dart';
 import 'widgets/cuisine_card.dart';
 import 'widgets/left_drawer.dart';
 import 'widgets/restaurant_card.dart';
- 
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -28,10 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
   // call  api cuisine
   var cuisineViewModel = CuisineViewModel();
 
+  //  call api Shop card
+  var shopViewModel = ShopViewModel();
+
   @override
   void initState() {
     restaurantViewModel.fetchAllRestaurants();
     cuisineViewModel.fetchAllCuisines();
+    shopViewModel.fetchAllShop();
     super.initState();
   }
 
@@ -407,16 +412,34 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SliverToBoxAdapter(
-              child: SizedBox(
-                height: 100,
-                child: GridView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 1,
-                  ),
-                  itemBuilder: (BuildContext context, index) {
-                    return ShopCard();
+              child: ChangeNotifierProvider<ShopViewModel>(
+                create: (context) => shopViewModel,
+                child: Consumer<ShopViewModel>(
+                  builder: (context, value, child) {
+                    switch (value.shops.status) {
+                      case Status.LOADING:
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      case Status.COMPLETE:
+                        return SizedBox(
+                          height: 100,
+                          child: GridView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: value.shops.data!.data.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                            ),
+                            itemBuilder: (BuildContext context, index) {
+                              return ShopCard(
+                                  data: value.shops.data!.data[index]);
+                            },
+                          ),
+                        );
+                      default:
+                        return const CircularProgressIndicator();
+                    }
                   },
                 ),
               ),
