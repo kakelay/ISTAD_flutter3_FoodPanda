@@ -3,6 +3,7 @@ import 'package:drawer/data/response/status.dart';
 import 'package:drawer/viewmodels/cuisine_viewmodel.dart';
 import 'package:drawer/viewmodels/restaurant_viewmodel.dart';
 import 'package:drawer/viewmodels/shop_viewmodel.dart';
+import 'package:drawer/views/add_restaurant/add_restaurant.dart';
 import 'package:drawer/views/home/widgets/shop_card.dart';
 
 import 'package:flutter/material.dart';
@@ -59,7 +60,14 @@ class _HomeScreenState extends State<HomeScreen> {
         //action  use for add Icons in AppBar  for leading
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>const  AddRestaurant(),
+                ),
+              );
+            },
             icon: const Icon(Icons.favorite_border_outlined),
           ),
           IconButton(

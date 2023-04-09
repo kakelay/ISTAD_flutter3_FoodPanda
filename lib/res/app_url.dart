@@ -3,6 +3,6 @@ class AppUrl {
   static var allRestaurants = '$baseUrl/food-panda-restaurants?populate=*';
   static var allCuisine ='$baseUrl/food-panda-cuisines?populate=*';
   static var allShop ='$baseUrl/food-panda-cuisines?populate=*';
-  
+  static var uploadImage ='$baseUrl/upload';
   
 }
