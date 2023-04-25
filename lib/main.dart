@@ -28,12 +28,11 @@ class MyApp extends StatelessWidget {
         const SystemUiOverlayStyle(statusBarColor: Colors.pink));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
       darkTheme: ThemeData(
-        primarySwatch: Colors.orange,
+        primarySwatch: Colors.pink,
         scaffoldBackgroundColor: Colors.grey[800],
       ),
       home: const SplashScreen(title: 'Share References'),

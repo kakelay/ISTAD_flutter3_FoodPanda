@@ -1,3 +1,4 @@
+import 'package:drawer/data/response/status.dart';
 import 'package:drawer/models/response/image.dart';
 import 'package:flutter/cupertino.dart';
 import '../data/response/api_respone.dart';
@@ -6,25 +7,44 @@ import '../repository/restaurant_repository.dart';
 
 class RestaurantViewModel extends ChangeNotifier {
   final _restaurantRepository = RestaurantRepository();
-  ApiRespone<Restaurant> restaurants = ApiRespone.loading();
-  ApiRespone<ImageModel> image =ApiRespone();
-
+  dynamic restaurants = ApiRespone.loading();
+  ApiRespone<ImageModel> image = ApiRespone();
 
   ///  post image part
-  setImageResponse(response){
-    image =response;
+  setImageResponse(response) {
+    if (response.data == null) {
+      image.status = Status.LOADING;
+    } else {
+      image = response;
+    }
     notifyListeners();
   }
+
   Future<dynamic> uploadImage(file) async {
     setImageResponse(ApiRespone.loading());
     await _restaurantRepository
         .uploadImage(file)
-        .then(
-            (image) => setImageResponse(ApiRespone.completed(image)))
+        .then((image) => setImageResponse(ApiRespone.completed(image)))
         .onError((error, stackTrace) =>
-        setImageResponse(ApiRespone.error(error.toString())));
+            setImageResponse(ApiRespone.error(error.toString())));
   }
 
+  /// post restaurant
+  Future<dynamic> postRestaurant(requestBody) async {
+    await _restaurantRepository
+        .postRestaurant(requestBody)
+        .then((value) => setRestaurantList(ApiRespone.completed(value)))
+        .onError((error, stackTrace) =>
+            setRestaurantList(ApiRespone.error(error.toString())));
+  }
+  /// put restaurant
+  Future<dynamic> putRestaurant(requestBody,id) async {
+    await _restaurantRepository
+        .putRestaurant(requestBody,id)
+        .then((value) => setRestaurantList(ApiRespone.completed(value)))
+        .onError((error, stackTrace) =>
+        setRestaurantList(ApiRespone.error(error.toString())));
+  }
 
   ///  get api  restaurant  part
   setRestaurantList(response) {
