@@ -15,10 +15,20 @@ class RestaurantCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    AddRestaurant(data: data, isUpdate: true)));
+          context,
+          MaterialPageRoute(
+            builder: (context) => AddRestaurant(data: data, isUpdate: true),
+          ),
+        );
+      },
+      onDoubleTap: () {
+        // Handle double tap
+         Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AddRestaurant(data: data, isUpdate: true),
+          ),
+        );
       },
       child: Container(
         margin: const EdgeInsets.only(

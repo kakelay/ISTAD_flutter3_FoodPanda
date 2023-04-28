@@ -25,7 +25,6 @@ class NetworkApiService {
       return true;
     } else {
       return false;
-      print(response.reasonPhrase);
     }
   }
   /// network put data from textfields and images
