@@ -30,6 +30,7 @@ class _AddRestaurantState extends State<AddRestaurant> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    // restaurantViewModel
     if (widget.isUpdate!) {
       nameController.text = widget.data.attributes.name;
       categoryController.text = widget.data.attributes.category;
@@ -144,11 +145,14 @@ class _AddRestaurantState extends State<AddRestaurant> {
                 create: (context) => restaurantViewModel,
                 child: Consumer<RestaurantViewModel>(
                   builder: (context, viewModel, _) {
-                    if (viewModel.restaurants.status == Status.COMPLETE) {
-                      WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text("Post Successed")));
-                      });
+                    if (viewModel.restaurants != null) {
+                      if (viewModel.restaurants.status == Status.COMPLETE) {
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((timeStamp) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text("Post Successed")));
+                        });
+                      }
                     }
                     return ElevatedButton(
                       onPressed: () {
@@ -186,7 +190,6 @@ class _AddRestaurantState extends State<AddRestaurant> {
   void postRestaurant(isUpdate) {
     print('image id ::$imageId');
     var requestBody = Data(
-
       name: nameController.text,
       category: categoryController.text,
       discount: int.parse(discountController.text),
@@ -195,7 +198,7 @@ class _AddRestaurantState extends State<AddRestaurant> {
       picture: imageId.toString(),
     );
     if (isUpdate) {
-      restaurantViewModel.putRestaurant(requestBody,widget.data.id);
+      restaurantViewModel.putRestaurant(requestBody, widget.data.id);
     } else {
       restaurantViewModel.postRestaurant(requestBody);
     }

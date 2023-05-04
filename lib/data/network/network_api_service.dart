@@ -8,6 +8,19 @@ import 'package:http/http.dart' as http;
 class NetworkApiService {
   dynamic responseJson;
 
+  /// delete
+  Future deleteApi(String url) async {
+    var request = http.Request('DELETE', Uri.parse(url));
+    http.StreamedResponse response = await request.send();
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   /// network post data from textfields and images
   /// generate from quicktype
   Future postApi(String url, requestBody) async {
@@ -27,6 +40,7 @@ class NetworkApiService {
       return false;
     }
   }
+
   /// network put data from textfields and images
   /// generate from quicktype
   Future puttApi(String url, requestBody) async {
@@ -68,6 +82,7 @@ class NetworkApiService {
     }
   }
 
+  ///get
   Future<dynamic> getApiRespones(String url) async {
     try {
       final response = await http.get(Uri.parse(url));

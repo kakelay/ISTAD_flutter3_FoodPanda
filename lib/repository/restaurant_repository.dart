@@ -55,4 +55,20 @@ class RestaurantRepository {
       rethrow;
     }
   }
+ 
+
+
+
+   Future<dynamic> deleteRestaurant( id) async {
+    try {
+       
+      var url = '${AppUrl.postRestaurant}/$id';
+      dynamic response = await _apiService.deleteApi(url);
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+   
 }

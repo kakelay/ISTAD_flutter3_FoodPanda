@@ -1,0 +1,63 @@
+[
+  {
+    "_id": "85f07016-e076-4c5c-bbb9-57c1e215b1fb",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://cms.istad.co/api/e-commerce-products",
+    "url": "https://cms.istad.co/api/e-commerce-products",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-28T16:18:41.032Z",
+    "modified": "2023-04-28T16:18:41.032Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "effc1bc1-e911-4073-ad70-a22383f0d654",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://cms.istad.co/api/upload",
+    "url": "https://cms.istad.co/api/upload",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-04-28T16:19:01.333Z",
+    "modified": "2023-04-28T16:19:01.333Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "795499cf-4c48-407b-ae7a-569813082471",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://cms.istad.co/api/upload",
+    "url": "https://cms.istad.co/api/upload",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-28T16:19:22.971Z",
+    "modified": "2023-04-28T16:19:22.971Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "c7805a3e-f5a8-443c-acbb-7b520118e282",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://cms.istad.co/api/e-commerce-products",
+    "url": "https://cms.istad.co/api/e-commerce-products",
+    "method": "POST",
+    "sortNum": 0,
+    "created": "2023-04-28T16:19:35.684Z",
+    "modified": "2023-04-28T16:20:26.172Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\r\n  \"data\": {\r\n    \"title\": \"Computer\",\r\n    \"rating\": \"15\",\r\n    \"description\": \"good quantity\",\r\n    \"quantity\": \"50\",\r\n    \"category\": \"2\",\r\n    \"thumbnail\": \"2179\",\r\n    \"price\": \"20\"\r\n  }\r\n}",
+      "form": []
+    },
+    "tests": []
+  }
+]
